@@ -1,0 +1,11 @@
+{
+   "physics": {
+      "friction"  : 1,
+      "gravity"   : 2,
+      "term_vel"  : 15
+   },
+   "controls": {
+      "spam_jump" : 1,
+      "spam_fire" : 1
+   }
+}

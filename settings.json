@@ -4,8 +4,30 @@
       "gravity"   : 2,
       "term_vel"  : 15
    },
-   "controls": {
-      "spam_jump" : 1,
-      "spam_fire" : 1
+   "p1":{
+      "settings": {
+         "spam_jump" : 1,
+         "spam_fire" : 0
+      },
+      "move_map":{
+         "left": 97, 
+         "right": 100, 
+         "jump": 119, 
+         "fire": 32, 
+         "run": 1
+      }
+   },
+   "p2":{
+      "settings": {
+         "spam_jump" : 1,
+         "spam_fire" : 0
+      },
+      "move_map":{
+         "left": 260, 
+         "right": 262, 
+         "jump": 264, 
+         "fire": 256, 
+         "run": 271
+      }
    }
 }

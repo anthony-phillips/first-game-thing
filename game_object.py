@@ -1,4 +1,5 @@
 import pygame
+import random
 
 class game_object:
     x = 0
@@ -71,11 +72,12 @@ class player(game_object):
 
     projectile_color = (0, 0, 0)
     projectile_hit_sounds = None
-    jump_sound = None
-    land_sound = None
+    jump_sounds = None
+    land_sounds = None
     attack_sounds = None
     wound_sounds = None
     death_sounds = None
+    victory_sounds = None
 
     facing = 1
     walk_right = None
@@ -103,7 +105,7 @@ class player(game_object):
         self.y_vel = self.jump_vel
         self.y += self.y_vel
         self.is_falling = True
-        #self.jump_sound.play()
+        #random.choice(self.jump_sound).play()
 
     def update_sequence(self, move_sequence):
         if self.move_sequence != move_sequence:
@@ -123,6 +125,7 @@ class projectile(game_object):
     color = (0, 0, 0)
 
     damage = 0
+    damage_reduction_counter = 0
     hit_sound = None
 
     owner = None

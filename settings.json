@@ -7,7 +7,7 @@
    "p1":{
       "settings": {
          "spam_jump" : 1,
-         "spam_fire" : 1
+         "spam_fire" : 0
       },
       "move_map":{
          "left": 97, 

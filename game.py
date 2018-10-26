@@ -1,7 +1,7 @@
 import pygame
 from initialize import *
 from game_object import direction, player, projectile
-import random
+from random import choice
 
 def redraw_frame():
     win.fill((0,0,0))
@@ -49,7 +49,7 @@ def player_update(play, keys):
 
     # Vertical movement
     if play.is_falling and play.hit_bottom() == win.get_height():
-        play.land_sound.play()
+        choice(play.land_sounds).play()
     play.is_falling = play.hit_bottom() < win.get_height()
     if (keys[play.move_map['jump']] and not play.is_falling) and (play.settings['spam_jump'] or not play.jump_pressed):
         play.jump_pressed = True
@@ -66,8 +66,8 @@ def player_update(play, keys):
             proj = projectile(play.hit_center(), 3)
             proj.damage = play.damage
             proj.color = play.projectile_color
-            random.choice(play.attack_sounds).play()
-            proj.hit_sound = random.choice(play.projectile_hit_sounds)
+            choice(play.attack_sounds).play()
+            proj.hit_sound = choice(play.projectile_hit_sounds)
             proj.owner = play
             proj.x_vel = 20 * play.facing
             projectiles.append(proj)
@@ -84,13 +84,11 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-    # Process player moves
-    keys = pygame.key.get_pressed()
-    for play in players:
-        player_update(play, keys)
-
     # Update projectile positions and process hits
     for proj in projectiles:
+        if proj.damage > 1 and proj.damage_reduction_counter % 5 == 0:
+            proj.damage -= 1
+        proj.damage_reduction_counter += 1
         proj.update_pos()
         if proj.is_out_window(win):
             projectiles.remove(proj)
@@ -101,12 +99,17 @@ while run:
                 play.fit_in_window(win)
                 play.health = max(play.health - proj.damage, 0)
                 proj.hit_sound.play()
-                random.choice(play.wound_sounds).play()
+                choice(play.wound_sounds).play()
                 if play.health == 0:
-                    random.choice(play.death_sounds).play()
+                    choice(play.death_sounds).play()
                     players.remove(play)
-                print('{} hit {}'.format(id(proj.owner), id(play)))
+                    choice(proj.owner.victory_sounds).play()
                 projectiles.remove(proj)
+                
+    # Process player moves
+    keys = pygame.key.get_pressed()
+    for play in players:
+        player_update(play, keys)
 
     redraw_frame()
     clock.tick(30)

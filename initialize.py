@@ -44,9 +44,13 @@ p1.wound_sounds = [
     pygame.mixer.Sound('sounds\DwarfMaleWoundB.wav'),
     pygame.mixer.Sound('sounds\DwarfMaleWoundC.wav')
 ]
+p1.jump_sounds = [pygame.mixer.Sound('sounds\DwarfMaleMainJump.wav')]
+p1.land_sounds = [pygame.mixer.Sound('sounds\DwarfMaleMainLand.wav')]
 p1.death_sounds = [pygame.mixer.Sound('sounds\DwarfMaleDeathA.wav')]
-p1.jump_sound = pygame.mixer.Sound('sounds\DwarfMaleMainJump.wav')
-p1.land_sound = pygame.mixer.Sound('sounds\DwarfMaleMainLand.wav')
+p1.victory_sounds = [
+    pygame.mixer.Sound('sounds\DwarfMaleCheer02.wav'),
+    pygame.mixer.Sound('sounds\DwarfMaleCheer03.wav')
+]
 p1.hit_x_offset = 20
 p1.hit_width = 26
 p1.hit_y_offset = 15
@@ -80,9 +84,13 @@ p2.wound_sounds = [
     pygame.mixer.Sound('sounds\OrcMaleWoundB.wav'),
     pygame.mixer.Sound('sounds\OrcMaleWoundC.wav')
 ]
+p2.jump_sounds = [pygame.mixer.Sound('sounds\OrcMaleMainJump.wav')]
+p2.land_sounds = [pygame.mixer.Sound('sounds\OrcMaleMainLand.wav')]
 p2.death_sounds = [pygame.mixer.Sound('sounds\OrcMaleDeath.wav')]
-p2.jump_sound = pygame.mixer.Sound('sounds\OrcMaleMainJump.wav')
-p2.land_sound = pygame.mixer.Sound('sounds\OrcMaleMainLand.wav')
+p2.victory_sounds = [
+    pygame.mixer.Sound('sounds\OrcMaleCheer01.wav'),
+    pygame.mixer.Sound('sounds\OrcMaleCheer02.wav')
+]
 p2.hit_x_offset = 18
 p2.hit_width = 25
 p2.hit_y_offset = 10
@@ -92,7 +100,6 @@ p2.settings = settings['p2']['settings']
 
 pygame.mixer.music.load('sounds\\battle05.ogg')
 pygame.mixer.music.load('sounds\\battle06.ogg')
-
 
 players = [p1, p2]
 projectiles = []

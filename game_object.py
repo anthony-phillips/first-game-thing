@@ -70,6 +70,12 @@ class player(game_object):
     is_falling = 0
 
     projectile_color = (0, 0, 0)
+    projectile_hit_sounds = None
+    jump_sound = None
+    land_sound = None
+    attack_sounds = None
+    wound_sounds = None
+    death_sounds = None
 
     facing = 1
     walk_right = None
@@ -88,6 +94,7 @@ class player(game_object):
     run_speed = 0
 
     health = 1
+    damage = 0
 
     def __init__(self, pos, width, height):
         return super().__init__(pos, width, height)
@@ -96,6 +103,7 @@ class player(game_object):
         self.y_vel = self.jump_vel
         self.y += self.y_vel
         self.is_falling = True
+        #self.jump_sound.play()
 
     def update_sequence(self, move_sequence):
         if self.move_sequence != move_sequence:
@@ -114,7 +122,8 @@ class projectile(game_object):
     radius = 0
     color = (0, 0, 0)
 
-    damage = 1
+    damage = 0
+    hit_sound = None
 
     owner = None
 
